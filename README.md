@@ -15,7 +15,7 @@ This is a simple Restaurant Order Web App build using React.js and Node.js. See 
 
 `npm start`
 
-The dev server should accessible on http://localhost:3000. 
+The dev server should be listening on http://localhost:3000. 
 
 ### Run a frontend app
 
@@ -25,6 +25,6 @@ On another terminal, run this Restaurant Order app with the following commands.
 
 `npm install`
 
-`npm run dev`
+`npm start`
 
-The app should be shown on your browser.
+The app should be accessible on http://localhost:8080 on your browser.
