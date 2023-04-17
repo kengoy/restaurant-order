@@ -46,7 +46,8 @@ The dev server should be accessible on http://localhost:8080 in default.
 - Add tests for each component
 - More error handling (upper limit of amounts to be inputted, server request timeout etc)
 - Dockerizing
+- Support product build for deployment
 - UX improvements
   - Allow users to filter meal items by selecting a category and/or by inputting a keyword, and/or selecting tags
-  - Recommend related items when user add an item to their cart (ex, Indian Entree added, then Naan and drink are recommended with pop up screen.)
+  - Recommend related items when user add an item to their cart (ex, Indian Entree added, then Naan and drink are recommended with pop up screen.) 
 - Create another end point and UI for restaurant managers to receive orders, confirm the order history etc.
