@@ -24,8 +24,8 @@ function App() {
     <CartProvider>
       {cartIsShown && <Cart onClose={hideCartHandler} />}
       <Header
-        title="Welcome to Mashgin Cafe"
-        titleShort="Mashgin Cafe"
+        title="Welcome to Yum Yum Cafe"
+        titleShort="Yum Yum Cafe"
         onShowCart={showCartHandler}
       />
       <main>
