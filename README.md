@@ -1,5 +1,5 @@
 # Restaurant Order App
-This is a Restaurant Order Web App build using React.js and Node.js.
+This is a simple Restaurant Order Web App build using React.js and Node.js. See [fronend](https://github.com/kengoy/restaurant-order/tree/main/frontend) to learn more features, component design, and [backend](https://github.com/kengoy/restaurant-order/tree/main/backend) to learn more API specification.
 
 ## Dev environment quick start
 
