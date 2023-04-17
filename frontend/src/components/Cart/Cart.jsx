@@ -12,7 +12,7 @@ const SERVER_API_BASE = import.meta.env.VITE_ORDER_SYSTEM_API_BASE_URL;
 const SERVER_API_ORDER = SERVER_API_BASE + 'v1/order';
 
 /**
- * A cart component that shows the items in the cart and the total amount.
+ * A cart component that shows the items in the cart and the total price.
  * @param {Object} props - The props object.
  * @param {JSX} props.onClose - Callback function to close the cart.
  * @returns {JSX.Element}
@@ -29,12 +29,12 @@ const Cart = (props) => {
   const [httpError, setHttpError] = useState(null);
 
   // Items in a cart are accessible through global context
-  // cartCtx is an object that has items and totalAmount
+  // cartCtx is an object that has items and total price
   const cartCtx = useContext(CartContext);
 
   // Float substraction sometimes causes negative value when user decreases amount and 0 for all items, hence abs is necessary.
   // Also, toFixed is necessary to avoid floating point error.
-  const totalAmount = `$${Math.abs(cartCtx.totalAmount.toFixed(2))}`;
+  const totalPrice = `$${Math.abs(cartCtx.totalPrice.toFixed(2))}`;
   const hasItems = cartCtx.items.length > 0;
 
   // Event handlers for use actions
@@ -60,7 +60,7 @@ const Cart = (props) => {
       .post(SERVER_API_ORDER, {
         items: cartCtx.items,
         paymentMethod: paymentFormData,
-        totalAmount: totalAmount,
+        totalPrice: totalPrice,
       })
       .then((response) => {
         const data = response.data;
@@ -121,7 +121,7 @@ const Cart = (props) => {
       {cartItems}
       <div className={classes.total}>
         <span>Total</span>
-        <span>{totalAmount}</span>
+        <span>{totalPrice}</span>
       </div>
       {!hasItems && <p>Your cart is empty. Add items to get started.</p>}
       <div className={classes.checkout}>
