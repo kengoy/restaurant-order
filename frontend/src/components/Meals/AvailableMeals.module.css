@@ -1,0 +1,49 @@
+/* Limit the max width for big wide screen for better UX  */
+.meals {
+  max-width: 1760px;
+  margin: 2rem auto;
+  animation: meals-appear 1s ease-out forwards;
+}
+
+.category {
+  padding: 0 20px;
+}
+
+/* use display: grid instead of flex for dynamic width adjustment depending on window size */
+.items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.httpError {
+  text-align: center;
+}
+
+/* animation to show meals info for better UX  */
+@keyframes meals-appear {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+}
+
+/* Adjust the number of meal items in a row depending on window size */
+@media only screen and (max-width: 800px) {
+  .items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .items {
+    grid-template-columns: 1fr;
+  }
+}

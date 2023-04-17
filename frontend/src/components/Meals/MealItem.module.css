@@ -1,0 +1,33 @@
+/* Meal item image size is square and is shrinked dending on the window size */
+.meal {
+  min-width: 240px;
+  max-width: 360px;
+  background-color: white;
+  margin: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.meal img {
+  object-fit: cover;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 5%;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.iteminfo {
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name {
+  margin: 0;
+}
+
+.price {
+  margin: 0.25rem 0 0 0;
+}

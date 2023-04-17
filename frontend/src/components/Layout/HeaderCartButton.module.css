@@ -1,0 +1,57 @@
+.button {
+  font: inherit;
+  border: none;
+  background-color: #fff;
+  color: #000;
+  padding: 0.75rem 3rem;
+  display: flex;
+  align-items: center;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+.button:hover,
+.button:active {
+  color: #5fb67b;
+}
+
+.icon {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+.badge {
+  background-color: #cccccc;
+  padding: 0.25rem 1rem;
+  border-radius: 25px;
+  margin-left: 1rem;
+  font-weight: bold;
+}
+
+.button:hover .badge,
+.button:active .badge {
+  background-color: #dddddd;
+}
+
+/* Make cart button bump when user add items */
+.bump {
+  animation: bump 300ms ease-out;
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.9);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
