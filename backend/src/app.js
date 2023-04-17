@@ -3,6 +3,8 @@ const cors = require('cors');
 const morgan = require('morgan');
 const swaggerUi = require('swagger-ui-express');
 
+const config = require('./config/config');
+
 const menuRouter = require('./routes/menuRouter');
 const imageRouter = require('./routes/imageRouter');
 const orderRouter = require('./routes/orderRouter');
@@ -29,7 +31,6 @@ app.use('/api/v1/order', orderRouter);
 app.use('/api-doc', swaggerUi.serve, apiDocRouter);
 
 // START SERVER
-const port = 3000;
-app.listen(port, () => {
-  console.log(`API server listening on port ${port}...`);
+app.listen(config.port, () => {
+  console.log(`API server listening on port ${config.port}...`);
 });
