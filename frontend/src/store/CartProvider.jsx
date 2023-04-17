@@ -87,7 +87,7 @@ const CartProvider = (props) => {
   };
 
   const clearItemFromCartHandler = () => {
-    dispatchCartAction({ type: CART_ACTION.REMOVE });
+    dispatchCartAction({ type: CART_ACTION.CLEAR });
   };
 
   const cartContext = {
