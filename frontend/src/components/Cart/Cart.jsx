@@ -144,16 +144,16 @@ const Cart = (props) => {
 
   // JSX elements for rendering order complete status
   const didPlaceModalContent = (
-    <>
-      <p>Order has been placed!</p>
-      <p>
-        Your meal will be ready in about 20 minutes. Pick up them on the
-        counter.
-      </p>
+    <div className={classes.completion}>
+      <h1>Order has been placed!</h1>
+      <div>
+        <h2>Your meal will be ready in about 20 minutes.</h2>
+        <h2>Pick up them on the front counter when your name is called.</h2>
+      </div>
       <div className={classes.actions}>
         <button onClick={closeOrderHandler}>OK</button>
       </div>
-    </>
+    </div>
   );
 
   // Return JSX elements for rendering modal

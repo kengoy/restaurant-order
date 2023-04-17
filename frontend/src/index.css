@@ -5,6 +5,8 @@
 * {
   box-sizing: border-box;
   user-select: none; /* Disabling mouse selection for better UX */
+  margin: 0;
+  padding: 0;
 }
 
 html {

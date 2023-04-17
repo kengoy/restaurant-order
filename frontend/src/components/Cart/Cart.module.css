@@ -45,6 +45,13 @@
   color: white;
 }
 
+.completion {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 2rem;
+}
+
 .error {
   color: #ca3e51;
 }
