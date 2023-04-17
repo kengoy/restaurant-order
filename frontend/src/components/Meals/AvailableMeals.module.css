@@ -9,7 +9,7 @@
   padding: 0 20px;
 }
 
-/* use display: grid instead of flex for dynamic width adjustment depending on window size */
+/* Using display: grid instead of flex for dynamic width adjustment depending on window size */
 .items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -22,7 +22,7 @@
   text-align: center;
 }
 
-/* animation to show meals info for better UX  */
+/* Animation to show meals info for better UX  */
 @keyframes meals-appear {
   from {
     opacity: 0;
