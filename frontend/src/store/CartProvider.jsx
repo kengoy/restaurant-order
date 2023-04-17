@@ -2,14 +2,19 @@ import { useReducer } from 'react';
 
 import CartContext from './cart-context';
 
+const CART_ACTION = {
+  ADD: 'ADD',
+  REMOVE: 'REMOVE',
+  CLEAR: 'CLEAR',
+};
+
 const defaultCartState = {
   items: [],
   totalAmount: 0,
 };
 
 const cartReducer = (state, action) => {
-  if (action.type === 'ADD') {
-    // TODO: change it to enum object
+  if (action.type === CART_ACTION.ADD) {
     const updatedTotalAmount =
       state.totalAmount + action.item.price * action.item.amount;
 
@@ -36,7 +41,7 @@ const cartReducer = (state, action) => {
     };
   }
 
-  if (action.type === 'REMOVE') {
+  if (action.type === CART_ACTION.REMOVE) {
     const existingCartItemIndex = state.items.findIndex(
       (item) => item.id === action.id
     );
@@ -60,7 +65,7 @@ const cartReducer = (state, action) => {
     };
   }
 
-  if (action.type === 'CLEAR') {
+  if (action.type === CART_ACTION.CLEAR) {
     return defaultCartState;
   }
 
@@ -74,15 +79,15 @@ const CartProvider = (props) => {
   );
 
   const addItemToCartHandler = (item) => {
-    dispatchCartAction({ type: 'ADD', item: item });
+    dispatchCartAction({ type: CART_ACTION.ADD, item: item });
   };
 
   const removeItemFromCartHandler = (id) => {
-    dispatchCartAction({ type: 'REMOVE', id: id });
+    dispatchCartAction({ type: CART_ACTION.REMOVE, id: id });
   };
 
   const clearItemFromCartHandler = () => {
-    dispatchCartAction({ type: 'CLEAR' });
+    dispatchCartAction({ type: CART_ACTION.REMOVE });
   };
 
   const cartContext = {
