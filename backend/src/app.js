@@ -1,10 +1,12 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const swaggerUi = require('swagger-ui-express');
 
 const menuRouter = require('./routes/menuRouter');
 const imageRouter = require('./routes/imageRouter');
 const orderRouter = require('./routes/orderRouter');
+const apiDocRouter = require('./routes/apiDocRouter');
 
 const app = express();
 
@@ -22,6 +24,9 @@ app.use((req, res, next) => {
 app.use('/api/v1/menu', menuRouter);
 app.use('/api/v1/image', imageRouter);
 app.use('/api/v1/order', orderRouter);
+
+// API documentation using Swagger UI
+app.use('/api-doc', swaggerUi.serve, apiDocRouter);
 
 // START SERVER
 const port = 3000;
