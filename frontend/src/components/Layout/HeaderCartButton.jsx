@@ -4,6 +4,13 @@ import { BsFillCartFill } from 'react-icons/Bs';
 import CartContext from '../../store/cart-context';
 import classes from './HeaderCartButton.module.css';
 
+/**
+ * A cart button component that has a cart icon, a badge to show the number of items in the cart, and a bumb animation when items are added.
+ * @param {Object} props - The props object.
+ * @param {Function} props.onClick - Callback function to show the cart.
+ * @returns {JSX.Element}
+ * @returns
+ */
 const HeaderCartButton = (props) => {
   // state variable to be used for controlling animation of the cart button when user add items
   const [isCartItemsUpdated, setIsCartItemsUpdated] = useState(false);
@@ -32,6 +39,7 @@ const HeaderCartButton = (props) => {
       setIsCartItemsUpdated(false);
     }, 300);
 
+    // clean up function to prevent memory leak
     return () => {
       clearTimeout(timer);
     };

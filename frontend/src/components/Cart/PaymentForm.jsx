@@ -10,8 +10,15 @@ const ERROR_MESSAGE_INVALID_CARD_EXPIRATION =
   'Expiration needs to be MM/YY with valid month and year.';
 const ERROR_MESSAGE_INVALID_CARD_CVC = 'CVC needs to be 3 or 4 digits.';
 
+/**
+ * Form component for payment information
+ * @param {*} props
+ * @param {Function} props.onConfirm - Callback function to confirm the payment
+ * @param {Function} props.onCancel - Callback function to cancel the checkout process
+ * @returns {JSX.Element}
+ */
 const PaymentForm = (props) => {
-  // state variables for form inputs
+  // State variables for card information
   const [cardNumber, setCardNumber] = useState('');
   const [errorMessageCardNumber, setErrorMessageCardNumber] = useState(null);
   const [cardName, setCardName] = useState('');
@@ -21,6 +28,8 @@ const PaymentForm = (props) => {
     useState(null);
   const [cvc, setCvc] = useState('');
   const [errorMessageCardCvc, setErrorMessageCardCvc] = useState(null);
+
+  // Ref for card number input
   const ref = useRef();
 
   // handle form submit
@@ -34,12 +43,14 @@ const PaymentForm = (props) => {
     });
   };
 
-  // validate input values
+  // Common util function to validate input values with specified regular expression
   const validateInput = (str, regExp) => {
     if (regExp.test(str)) return true;
     else return false;
   };
 
+  // Event handlers to validate card information
+  // validateCardNumberInput: event handler to validate card number input
   const validateCardNumberInput = (e) => {
     const cardNumber = e.target.value;
     // validate if card number length is valid
@@ -50,12 +61,14 @@ const PaymentForm = (props) => {
     }
   };
 
+  // handleCardNumberInput: event handler to handle card number input
   const handleCardNumberInput = (e) => {
     // validate if input is only digits or empty string
     if (validateInput(e.target.value, new RegExp(/^[0-9]{0,16}$/)))
       setCardNumber(e.target.value);
   };
 
+  // handleCardNameInput: event handler to handle card name input
   const validateNameInput = (e) => {
     // validate if the string has space between first name and last name
     if (
@@ -70,6 +83,7 @@ const PaymentForm = (props) => {
     }
   };
 
+  // handleCardExpirationInput: event handler to handle card expiration input
   const handleCardExpirationInput = (e) => {
     if (
       // validate if input is only 2 digits in both the begging and the end
@@ -78,6 +92,7 @@ const PaymentForm = (props) => {
       setExpiration(e.target.value);
   };
 
+  // validateCardExpirationInput: event handler to validate card expiration input
   const validateCardExpirationInput = (e) => {
     const val = e.target.value;
     // validate if input is formatted as MM/YY
@@ -100,12 +115,14 @@ const PaymentForm = (props) => {
     }
   };
 
+  // handleCardCvcInput: event handler to handle card cvc input
   const handleCardCvcInput = (e) => {
     // validate if input is only 3 or 4 digits or empty string
     if (validateInput(e.target.value, new RegExp(/\b\d{1,4}\b|^(?!.)/)))
       setCvc(e.target.value);
   };
 
+  // validateCardCvcInput: event handler to validate card cvc input
   const validateCardCvcInput = (e) => {
     const cvc = e.target.value;
     if (cvc.length < 3 || cvc.length > 4) {
@@ -115,11 +132,12 @@ const PaymentForm = (props) => {
     }
   };
 
-  // auto scroll to the payment form for better UX
+  // Auto scroll to the payment form for better UX
   useEffect(() => {
     ref.current.scrollIntoView();
   }, []);
 
+  // Render the JSX elements
   return (
     <form ref={ref} onSubmit={handleSubmit} className={classes.form}>
       <h2>Payment details</h2>

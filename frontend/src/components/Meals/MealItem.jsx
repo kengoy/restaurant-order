@@ -4,13 +4,23 @@ import CartContext from '../../store/cart-context';
 import MealItemForm from './MealItemForm';
 import classes from './MealItem.module.css';
 
+/**
+ * A meal item component that has a name, a price, and a form to add the item to a cart.
+ * @param {Object} props
+ * @param {string} props.id - The id of the item.
+ * @param {string} props.name - The name of the item.
+ * @param {number} props.price - The price of the item.
+ * @param {string} props.imageSrc - The image source url path of the item.
+ * @returns {JSX.Element}
+ */
 const MealItem = (props) => {
-  // item will be added to a cart which are accessible through global context
+  // Item will be added to a cart which are accessible through global context
   const cartCtx = useContext(CartContext);
 
+  // Format price to have exact two decimal places with a dollar sign
   const price = `$${props.price.toFixed(2)}`;
 
-  // event handler to add item to cart by user interaction
+  // Event handler to add item to cart by user interaction
   const addToCartHandler = (amount) => {
     cartCtx.addItem({
       id: props.id,
@@ -20,6 +30,7 @@ const MealItem = (props) => {
     });
   };
 
+  // Return JSX elments
   return (
     <div className={classes.meal}>
       <img src={props.imageSrc} />

@@ -3,17 +3,22 @@ import classes from './AvailableMeals.module.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-// server url base is configured in .env
+// Server url base is configured in .env
 const SERVER_API_BASE = import.meta.env.VITE_ORDER_SYSTEM_API_BASE_URL;
 const SERVER_API_MENU = SERVER_API_BASE + 'v1/menu';
 const SERVER_API_IMAGE_BASE = SERVER_API_BASE + 'v1/image/';
 
+/**
+ * A component that shows available meals.
+ * @returns {JSX.Element}
+ */
 const AvailableMeals = () => {
-  // state variables for available meals and error message
+  // State variables for available meals and error message
   const [menu, setMenu] = useState(null);
   const [httpError, setHttpError] = useState(null);
 
-  // fetch available meals data from server
+  // Fetch available meals data from server
+  // This is a side effect that is triggered when the component is rendered
   useEffect(() => {
     axios
       .get(SERVER_API_MENU)
@@ -44,7 +49,8 @@ const AvailableMeals = () => {
       });
   }, []);
 
-  // display error message in case of network error
+  // Display error message in case of network error
+  // Otherwise, display available meals
   if (httpError) {
     return (
       <section className={classes.httpError}>

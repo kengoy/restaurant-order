@@ -2,12 +2,21 @@ import ReactDOM from 'react-dom';
 import classes from './Modal.module.css';
 import { useEffect } from 'react';
 
-// Grey Background behind the modal over ray
+/**
+ * Grey full screen background component behind the modal overlay
+ * @param {Object} props
+ * @param {Function} props.onClose - Callback function to close the modal.
+ * @returns {JSX.Element}
+ */
 const Backdrop = (props) => {
   return <div className={classes.backdrop} onClick={props.onClose}></div>;
 };
 
-// Modal overraied on top of the current screen
+/**
+ * Modal overlay component overlaid on top of the current screen
+ * @param {Object} props
+ * @returns {JSX.Element}
+ */
 const ModalOverlay = (props) => {
   return (
     <div className={classes.modal}>
@@ -16,9 +25,15 @@ const ModalOverlay = (props) => {
   );
 };
 
-// modal is appended in the element of id "overlays" placed in the body of index.html
+// Modal is appended in the element of id "overlays" placed in the body of index.html
 const portalElement = document.getElementById('overlays');
 
+/**
+ * Modal component that has a backdrop and a modal overlay
+ * @param {Object} props - The props object that include children components.
+ * @param {Function} props.onClose - Callback function to close the modal.
+ * @returns {JSX.Element}
+ */
 const Modal = (props) => {
   // disable scroll for the screen behind the modal
   useEffect(() => {

@@ -7,37 +7,53 @@ import classes from './Cart.module.css';
 import CartContext from '../../store/cart-context';
 import PaymentForm from './PaymentForm';
 
-// server url base is configured in .env
+// Server url base is configured in .env
 const SERVER_API_BASE = import.meta.env.VITE_ORDER_SYSTEM_API_BASE_URL;
 const SERVER_API_ORDER = SERVER_API_BASE + 'v1/order';
 
+/**
+ * A cart component that shows the items in the cart and the total amount.
+ * @param {Object} props - The props object.
+ * @param {JSX} props.onClose - Callback function to close the cart.
+ * @returns {JSX.Element}
+ */
 const Cart = (props) => {
-  // state variables for checkout
+  // State variables for checkout
+  // isCheckout: whether the cart is in checkout mode
   const [isCheckout, setIsCheckout] = useState(false);
+  // isOrdering: whether the cart is in ordering mode
   const [isOrdering, setIsOrdering] = useState(false);
+  // didOrder: whether the cart is in order complete mode
   const [didOrder, setDidOrder] = useState(false);
+  // httpError: error message from http request
   const [httpError, setHttpError] = useState(null);
 
   // Items in a cart are accessible through global context
+  // cartCtx is an object that has items and totalAmount
   const cartCtx = useContext(CartContext);
 
   // Float substraction sometimes causes negative value when user decreases amount and 0 for all items, hence abs is necessary.
+  // Also, toFixed is necessary to avoid floating point error.
   const totalAmount = `$${Math.abs(cartCtx.totalAmount.toFixed(2))}`;
   const hasItems = cartCtx.items.length > 0;
 
   // Event handlers for use actions
+  // Event handler when user clicks '-' button
   const cartItemAddHandler = (item) => {
     cartCtx.addItem({ ...item, amount: 1 });
   };
 
+  // Event handler when user clicks '-' button
   const cartItemRemoveHandler = (id) => {
     cartCtx.removeItem(id);
   };
 
+  // Event handler when user clicks the 'Checkout' button
   const checkoutHandler = () => {
     setIsCheckout(true);
   };
 
+  // Event handler when user clicks the 'Place Order' button
   const placeOrderHandler = (paymentFormData) => {
     setIsOrdering(true);
     axios
@@ -61,6 +77,7 @@ const Cart = (props) => {
       });
   };
 
+  // Event handler when user clicks the 'Close' button
   const closeOrderHandler = () => {
     setIsCheckout(false);
     setDidOrder(false);
@@ -68,7 +85,7 @@ const Cart = (props) => {
     props.onClose();
   };
 
-  // JSX
+  // JSX elements for rendering cart items
   const cartItems = (
     <ul className={classes['cart-items']}>
       {cartCtx.items.map((item) => (
@@ -84,6 +101,7 @@ const Cart = (props) => {
     </ul>
   );
 
+  // JSX elements for rendering action buttonss
   const modalActions = (
     <div className={classes.actions}>
       <button className={classes['button--alt']} onClick={props.onClose}>
@@ -97,6 +115,7 @@ const Cart = (props) => {
     </div>
   );
 
+  // JSX elements for rendering modal content: cart items, total amount, payment form, error message, and action buttonss
   const cartModalContent = (
     <>
       {cartItems}
@@ -120,17 +139,24 @@ const Cart = (props) => {
     </>
   );
 
+  // JSX elements for rendering ordering status
   const isPlacingModalContent = <p>Sending order data...</p>;
 
+  // JSX elements for rendering order complete status
   const didPlaceModalContent = (
     <>
-      <p>Sent the order! Please wait for your meals served.</p>
+      <p>Order has been placed!</p>
+      <p>
+        Your meal will be ready in about 20 minutes. Pick up them on the
+        counter.
+      </p>
       <div className={classes.actions}>
         <button onClick={closeOrderHandler}>OK</button>
       </div>
     </>
   );
 
+  // Return JSX elements for rendering modal
   return (
     <Modal onClose={props.onClose}>
       {!isOrdering && !didOrder && cartModalContent}
