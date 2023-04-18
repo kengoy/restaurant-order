@@ -15,7 +15,7 @@ or
 - [Install Docker](https://www.docker.com/)
 
 ### Run a local API server
-On your local machine with node.js installed,
+On your local machine with node.js installed, run a API server by the following commands
 
   ```sh
   cd backend
@@ -28,7 +28,7 @@ On your local machine with node.js installed,
   npm start
   ```
 
-or, on docker,
+or, to run a API server on docker, run the folloing commands
 
   ```sh
   docker-compose up --build -d
@@ -64,7 +64,7 @@ On another terminal, run the app with the following commands.
   npm start
   ```
 
-or, on docker,
+or, to run an app on docker, run the folloing commands
 
   ```sh
   docker exec -it frontend sh
