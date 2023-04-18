@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  api:
+    image: node:alpine
+    build: ./backend
+    container_name: backend
+    entrypoint: /bin/sh
+    ports:
+      - '3000:3000'
+    working_dir: /backend
+    volumes:
+      - type: bind
+        source: ./backend
+        target: /backend
+    tty: true
+  client:
+    image: node:alpine
+    build: ./frontend
+    container_name: frontend
+    entrypoint: /bin/sh
+    ports:
+      - '8080:8080'
+    working_dir: /frontend
+    volumes:
+      - type: bind
+        source: ./frontend
+        target: /frontend
+    tty: true
